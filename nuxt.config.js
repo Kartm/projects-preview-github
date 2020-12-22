@@ -6,7 +6,7 @@ export default {
     '~/plugins/init.client.ts'
   ],
 
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/dotenv'],
 
   modules: ['@nuxtjs/axios'],
 

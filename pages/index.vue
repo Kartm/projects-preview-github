@@ -3,12 +3,14 @@
     <section class="main-page__search-box">
       <h2>GitHub Repository Preview</h2>
       <search-field
+        v-if="isAuthenticated"
         class="main-page__search-field"
         :options="options"
         @onInput="handleInput"
         @onSelect="handleSelect"
         placeholder="Repository name"
       />
+      <a class="main-page__login-link" v-else href="/login">Click to login</a>
     </section>
   </div>
 </template>
@@ -34,6 +36,14 @@ export default class MainPage extends Vue {
   private options: SearchFieldOption[] = [];
   private debouncedFetchData = debounce(this.fetchData, 500);
 
+  private get isAuthenticated() {
+    if (process.client) {
+      const token = localStorage.getItem('github_token');
+
+      return token && token.startsWith('Bearer');
+    }
+  }
+
   private handleInput(phrase: string) {
     this.debouncedFetchData(phrase);
   }
@@ -46,7 +56,7 @@ export default class MainPage extends Vue {
     });
   }
 
-  async fetchData(phrase: string) {
+  private async fetchData(phrase: string) {
     this.$api
       .$post(
         '/graphql',
@@ -98,6 +108,14 @@ export default class MainPage extends Vue {
     padding: 32px 10px;
     color: #f3f3f3;
     background-color: #922432;
+  }
+
+  &__login-link {
+    margin-top: 12px;
+    &:link,
+    &:visited {
+      color: #3c1784;
+    }
   }
 
   &__search-field {

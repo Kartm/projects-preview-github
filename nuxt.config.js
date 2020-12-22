@@ -14,9 +14,5 @@ export default {
     typeCheck: {
       eslint: true
     }
-  },
-
-  router: {
-    middleware: 'authenticated'
   }
 };

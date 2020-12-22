@@ -37,6 +37,8 @@ export default class TextCopy extends Vue {
 <style lang="scss">
 .text-copy {
   &__button {
+    min-width: 60px;
+
     &--copied {
       background-color: grey;
     }

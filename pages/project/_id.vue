@@ -13,7 +13,12 @@
       </div>
     </section>
     <section class="project-page__controls">
-      <labeled-select label="Showing latest commits: " />
+      <labeled-select
+        label="Showing latest commits: "
+        :options="options"
+        :preselected="selected"
+        @onChange="handleCommitCountChange"
+      />
     </section>
     <section class="project-page__commit-list">
       <section class="project-page__scroll-area">
@@ -64,7 +69,7 @@ export default class Project extends Vue {
     await this.fetchProjectData(+this.selected.value);
   }
 
-  async fetchProjectData(commitCount: number) {
+  private async fetchProjectData(commitCount: number) {
     const { id } = this.$route.params;
 
     this.$api
@@ -135,6 +140,10 @@ export default class Project extends Vue {
 
         this.isLoading = false;
       });
+  }
+
+  private async handleCommitCountChange(option: LabeledSelectOption) {
+    await this.fetchProjectData(+option.value);
   }
 }
 </script>

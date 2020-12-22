@@ -2,12 +2,13 @@
   <span class="labeled-select">
     <label :for="selectId">{{ label }}</label>
 
-    <select name="pets" :id="selectId">
-      <option value="">--Please choose an option--</option>
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="50">50</option>
-      <option value="100">100</option>
+    <select @change="handleChange" :value="preselectedValue" :id="selectId">
+      <option value="">
+        {{ `#` }}
+      </option>
+      <option v-for="(option, i) in options" :value="option.value" :key="i">
+        {{ option.text }}
+      </option>
     </select>
   </span>
 </template>
@@ -35,6 +36,24 @@ export default class LabeledSelect extends Vue {
   private mounted() {
     // generate unique id to combine label & select
     this.selectId = generateId();
+  }
+
+  private get preselectedValue() {
+    return this.preselected ? this.preselected.value : '';
+  }
+
+  private handleChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+
+    const option = this.options.filter(
+      (option) => option.value === select.value
+    );
+
+    if (option.length === 0) {
+      return;
+    }
+
+    this.$emit('onChange', option[0]);
   }
 }
 </script>

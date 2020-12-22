@@ -37,7 +37,12 @@ export default class SearchField extends Vue {
   private readonly options!: SearchFieldOption[];
 
   private inputValue = '';
-  private readonly datalistId = generateId();
+  private datalistId = '';
+
+  private mounted() {
+    // generate unique id to combine input & datalist
+    this.datalistId = generateId();
+  }
 
   private handleInput(event: Event) {
     const input = event.target as HTMLInputElement;

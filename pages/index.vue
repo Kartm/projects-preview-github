@@ -2,6 +2,7 @@
   <div class="container">
     <MainHeader />
     <h2>{{ title }}</h2>
+    <search-field />
     <div class="search">
       <div>
         Search:
@@ -24,52 +25,62 @@
 </template>
 
 <script lang="ts">
-import Tile from '@/components/Tile.vue'
-import MainHeader from '@/components/MainHeader.vue'
-import { Vue, Component } from 'nuxt-property-decorator'
+import Tile from '@/components/Tile.vue';
+import MainHeader from '@/components/MainHeader.vue';
+import SearchField from '@/components/SearchField.vue';
+import { Vue, Component } from 'nuxt-property-decorator';
+
 @Component({
   components: {
     Tile,
-    MainHeader
-  }
+    MainHeader,
+    SearchField,
+  },
 })
 export default class MyStore extends Vue {
-  title: string = 'Product List'
+  // private mounted() {
+  //   this.$axios.setHeader('Content-Type', 'application/json');
+  //   this.$axios.setToken(
+  //     window.localStorage.getItem('auth._token.github') || '',
+  //     'Bearer'
+  //   );
+  // }
+  title: string = 'Product List';
   inventoryData: Array<object> = [
     {
       sku: 1,
       quantity: 0,
       brand: 'Samsung',
       type: 'Smartphone',
-      stock: 'Out of Stock'
+      stock: 'Out of Stock',
     },
     {
       sku: 2,
       quantity: 12,
-      type: 'laptop'
-    }
-  ]
+      type: 'laptop',
+    },
+  ];
   productList: Array<object> = [
     {
       name: 'Samsung Galaxy s10',
       sku: 1,
       link: '/phone',
-      image: 'iphone-11.png'
+      image: 'iphone-11.png',
     },
     {
       name: 'Macbook Pro',
       sku: 2,
       link: '/laptop',
-      image: 'macbook.png'
-    }
-  ]
-  searchTextValue: string = ''
+      image: 'macbook.png',
+    },
+  ];
+  searchTextValue: string = '';
 
   get searchText() {
-    return this.searchTextValue
+    return this.searchTextValue;
   }
   set searchText(val) {
-    this.searchTextValue = val
+    this.searchTextValue = val;
   }
 }
 </script>

@@ -150,9 +150,6 @@ export default class Project extends Vue {
 
 <style lang="scss">
 .project-page {
-  color: #283747;
-  background-color: #f3f3f3;
-
   &__header {
     display: flex;
     justify-content: space-between;

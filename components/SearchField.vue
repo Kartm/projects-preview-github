@@ -22,19 +22,7 @@
 
 <script lang="ts">
 import { Vue, Component, namespace } from 'nuxt-property-decorator';
-
-function debounce<Params extends any[]>(
-  func: (...args: Params) => any,
-  timeout: number
-): (...args: Params) => void {
-  let timer: NodeJS.Timeout;
-  return (...args: Params) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      func(...args);
-    }, timeout);
-  };
-}
+import debounce from '@/utils/debounce';
 
 export interface Metadata {
   id: string;

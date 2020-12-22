@@ -1,12 +1,15 @@
 <template>
-  <div class="container">
-    <h2>Project list</h2>
-    <search-field
-      :options="options"
-      @onInput="handleInput"
-      @onSelect="handleSelect"
-      placeholder="Provide GitHub project name"
-    />
+  <div class="main-page">
+    <section class="main-page__search-box">
+      <h2>GitHub Repository Preview</h2>
+      <search-field
+        class="main-page__search-field"
+        :options="options"
+        @onInput="handleInput"
+        @onSelect="handleSelect"
+        placeholder="Repository name"
+      />
+    </section>
   </div>
 </template>
 
@@ -86,4 +89,19 @@ export default class MainPage extends Vue {
 }
 </script>
 <style lang="scss">
+.main-page {
+  &__search-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 32px 10px;
+    color: #f3f3f3;
+    background-color: #922432;
+  }
+
+  &__search-field {
+    margin-top: 12px;
+  }
+}
 </style>

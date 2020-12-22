@@ -1,7 +1,6 @@
 <template>
   <div class="header">
-    <input
-      v-model="inputValue"
+    <custom-input
       @input="handleInput"
       @change="handleChange"
       :list="datalistId"
@@ -22,6 +21,7 @@
 
 <script lang="ts">
 import { Vue, Component, namespace, Prop } from 'nuxt-property-decorator';
+import CustomInput from '@/components/atoms/CustomInput.vue';
 import generateId from '@/utils/generate-id';
 
 export interface SearchFieldOption {
@@ -31,7 +31,7 @@ export interface SearchFieldOption {
   metadata: any;
 }
 
-@Component
+@Component({ components: { CustomInput } })
 export default class SearchField extends Vue {
   @Prop({ type: Array, default: () => [] })
   private readonly options!: SearchFieldOption[];
@@ -44,9 +44,8 @@ export default class SearchField extends Vue {
     this.datalistId = generateId();
   }
 
-  private handleInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this.$emit('onInput', input.value);
+  private handleInput(event: InputEvent) {
+    this.$emit('onInput', event.data);
   }
 
   private handleChange(event: Event) {

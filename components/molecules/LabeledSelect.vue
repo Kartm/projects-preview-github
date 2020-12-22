@@ -1,8 +1,13 @@
 <template>
   <span class="labeled-select">
-    <label :for="selectId">{{ label }}</label>
+    <label class="labeled-select__label" :for="selectId">{{ label }}</label>
 
-    <select @change="handleChange" :value="preselectedValue" :id="selectId">
+    <select
+      class="labeled-select__select"
+      @change="handleChange"
+      :value="preselectedValue"
+      :id="selectId"
+    >
       <option value="">
         {{ `#` }}
       </option>
@@ -59,4 +64,16 @@ export default class LabeledSelect extends Vue {
 </script>
 
 <style lang="scss">
+.labeled-select {
+  &__label {
+    font-size: 12px;
+  }
+
+  &__select {
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    background-color: ghostwhite;
+    border: 0.5px #c5c5c5 solid;
+  }
+}
 </style>

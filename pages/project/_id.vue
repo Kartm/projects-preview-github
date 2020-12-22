@@ -8,8 +8,8 @@
       </div>
       <div class="project-page__copy-buttons">
         <label>Clone the repository:</label>
-        <text-copy :value="url" />
-        <text-copy :value="sshUrl" />
+        <text-copy class="project-page__copy-button" :value="url" />
+        <text-copy class="project-page__copy-button" :value="sshUrl" />
       </div>
     </section>
     <section class="project-page__controls">
@@ -161,13 +161,19 @@ export default class Project extends Vue {
     background-color: #922432;
   }
 
-  &__header-text {
+  &__copy-button:first-of-type {
+    margin-bottom: 4px;
   }
 
   &__copy-buttons {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+
+    label {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
   }
 
   &__controls {

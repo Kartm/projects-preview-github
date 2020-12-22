@@ -1,17 +1,28 @@
 <template>
   <span class="text-copy">
-    <input class="text-copy__input" type="text" :value="value" readonly />
-    <button class="text-copy__button" :class="buttonClasses" @click="onCopy">
+    <custom-input
+      class="text-copy__input"
+      type="text"
+      :value="value"
+      readonly
+    />
+    <custom-button
+      class="text-copy__button"
+      :class="buttonClasses"
+      @click="onCopy"
+    >
       {{ buttonText }}
-    </button>
+    </custom-button>
   </span>
 </template>
 
 <script lang="ts">
 import { Vue, Component, namespace, Prop } from 'nuxt-property-decorator';
+import CustomInput from '@/components/atoms/CustomInput.vue';
+import CustomButton from '@/components/atoms/CustomButton.vue';
 import copyToClipboard from '@/utils/copy-to-clipboard';
 
-@Component
+@Component({ components: { CustomInput, CustomButton } })
 export default class TextCopy extends Vue {
   @Prop({ required: true, type: String }) private readonly value!: string;
 
@@ -40,7 +51,7 @@ export default class TextCopy extends Vue {
     min-width: 60px;
 
     &--copied {
-      background-color: grey;
+      background-color: #917eb8;
     }
   }
 }

@@ -27,7 +27,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    // .client will only be run client side on initial app load
+    '~/plugins/init.client.ts'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -35,7 +38,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ['@nuxtjs/axios'],
   /*
    ** Build configuration
    */
@@ -49,5 +52,9 @@ export default {
     typeCheck: {
       eslint: true
     }
+  },
+
+  router: {
+    middleware: 'authenticated'
   }
-}
+};

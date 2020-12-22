@@ -15,9 +15,9 @@
   </div>
 </template>
 <script lang="ts">
-import { Context } from '@nuxt/types';
 import { Vue, Component } from 'nuxt-property-decorator';
-import TextCopy from '@/components/TextCopy.vue';
+import TextCopy from '@/components/molecules/TextCopy.vue';
+import { Context } from '@nuxt/types';
 
 interface Commit {
   message: string;
